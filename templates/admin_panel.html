@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+
+{% block content %}
+      <section class="section-padding bg-dark inner-header">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12 text-center">
+                  <h1 class="mt-0 mb-3">Панель управления</h1>
+                  <div class="breadcrumbs">
+                     <p class="mb-0"><a href="{% url 'home_url' %}"><i class="mdi mdi-home-outline"></i> Главная</a> /  Мои объявлления</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- My Properties -->
+      <section class="section-padding">
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-4 col-md-4 user-side-bar">
+                  <div class="row">
+                        <div class="col-sm-6">
+                            <h4>Объявлений за сегодня</h4>
+                            <div class="admin-number">{{ today_active_classifieds }}</div>
+                        </div>
+                        <div class="col-sm-6">
+                            <h4>Активно объявлений всего</h4>
+                            <div class="admin-number">{{ total_active_classifieds }}</div>
+                        </div>
+                        <div class="col-sm-6">
+                            <h4>Не активно объявлений всего</h4>
+                            <div class="admin-number">{{ total_disactive_classifieds }}</div>
+                        </div>
+                  </div>
+               </div>
+               <div class="col-lg-8 col-md-9">
+                   <div class="row">
+                       <div class="col-12">
+                           <canvas id="myChart" width="400" height="400"></canvas>
+                       </div>
+                   </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- End My Properties -->
+{% endblock %}
+    {% block scripts_footer %}
+    <script>
+        let defaultData = []
+        let labels = []
+        $.ajax({
+            method: 'GET',
+            url: '/admin_panel/charts/api/',
+            success: function (data) {
+                labels = data.labels;
+                defaultData = data.default_values;
+                console.log(data);
+                // Далее код отвечает за графики. Код Charts.js
+                var ctx = document.getElementById('myChart').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Объявлений',
+                            data: defaultData,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)'
+                            ],
+                        }],
+                    },
+                     options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                });
+            },
+            error: function (errord_data) {
+                console.log('error')
+                console.log(errord_data);
+            }
+        })
+
+{% comment %}        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: '# of Votes',
+                    data: defaultData,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });{% endcomment %}
+    </script>
+    {% endblock %}

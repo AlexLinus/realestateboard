@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+          <!-- Blog List -->
+      <section class="section-padding">
+         <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2>{% if posts %}{{ search_query }}{% else %}Извините, но по вашему запросу мы не смогли ничего найти!{% endif %}</h2>
+                </div>
+               <div class="col-lg-12 col-md-12">
+                  <div class="row">
+                  {% if posts %}
+                   {% for post in posts %}
+                     <div class="col-lg-4 col-md-4">
+                        <div class="card blog-card">
+                           <a href="{{ post.get_absolute_url }}">
+                              <img class="card-img-top" src="{% if post.get_preview_image %}{{ post.get_preview_image }}{% else %}{% static 'img/blog/1.png' %}{% endif %}" alt="Card image cap">
+                              <div class="card-body">
+                                 <span class="badge badge-success">House/Villa</span>
+                                 <h6>{{ post.post_title }}</h6>
+                                 <p class="mb-0">{{ post.post_body|truncatechars:100|safe }}</p>
+                              </div>
+                              <div class="card-footer">
+                                 <p class="mb-0"> <strong>{{ post.author.username }}</strong> {{ post.pub_date }}</p>
+                              </div>
+                           </a>
+                        </div>
+                     </div>
+                   {% endfor %}
+                  {% endif %}
+                  </div>
+
+                  <nav class="mt-5">
+                     <ul class="pagination justify-content-center">
+                        <li class="page-item disabled">
+                           <a class="page-link" href="blog.html#" tabindex="-1"><i class="mdi mdi-chevron-left"></i></a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="blog.html#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="blog.html#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="blog.html#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="blog.html#">...</a></li>
+                        <li class="page-item"><a class="page-link" href="blog.html#">10</a></li>
+                        <li class="page-item">
+                           <a class="page-link" href="blog.html#"><i class="mdi mdi-chevron-right"></i></a>
+                        </li>
+                     </ul>
+                  </nav>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- End Blog List -->
+{% endblock %}

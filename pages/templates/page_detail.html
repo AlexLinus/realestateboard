@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+     <!-- Inner Header -->
+      <section class="section-padding bg-dark inner-header">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12 text-center">
+                  <h1 class="mt-0 mb-3">{{ page.page_title}}</h1>
+                  <div class="breadcrumbs">
+                     <p class="mb-0"><a href="about.html#"><i class="mdi mdi-home-outline"></i> Home</a> / {{ page.page_title }}</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- End Inner Header -->
+      <!-- About -->
+      <section class="section-padding bg-white">
+         <div class="container">
+            <div class="row">
+               <div class="col-12">
+                    {{ page.page_body|safe }}
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- End About -->
+{% endblock %}

@@ -1,0 +1,274 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+      <!-- Main Slider With Form -->
+      <section class="samar-slider">
+         <div id="samarslider" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+               <li data-target="#samarslider" data-slide-to="0" class="active"></li>
+               <li data-target="#samarslider" data-slide-to="1"></li>
+               <li data-target="#samarslider" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner" role="listbox">
+               <div class="carousel-item active slider-one">
+                  <div class="overlay"></div>
+               </div>
+               <div class="carousel-item slider-two">
+                  <div class="overlay"></div>
+               </div>
+               <div class="carousel-item slider-three">
+                  <div class="overlay"></div>
+               </div>
+            </div>
+            <a class="carousel-control-prev" href="index.html#samarslider" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="index.html#samarslider" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+            </a>
+         </div>
+         <div class="slider-form">
+            <div class="container">
+               <h2 class="text-left mb-1 text-white d-none d-sm-block">Find Your Dream Home</h2>
+               <p class="text-white mb-5 d-none d-sm-block">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard <br/>dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+               <form action="{% url 'classified_search_url' %}" method="GET">
+                  <div class="tab-content">
+                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="row no-gutters">
+                           <div class="col-sm-4">
+                              <div class="input-group">
+                                 <div class="input-group-addon"><i class="mdi mdi-map-marker-multiple"></i></div>
+                                  {{ search_form.min_price }}
+                              </div>
+                           </div>
+                           <div class="col-sm-3">
+                              <div class="input-group">
+                                 <div class="input-group-addon"><i class="mdi mdi-google-maps"></i></div>
+                                 {{ search_form.max_price }}
+                              </div>
+                           </div>
+                           <div class="col-sm-3">
+                              <div class="input-group">
+                                 <div class="input-group-addon"><i class="mdi mdi-security-home"></i></div>
+                                  {{ search_form.nmb_rooms }}
+                              </div>
+                           </div>
+                           <div class="col-sm-2">
+                              <button type="submit" class="btn btn-secondary btn-block no-radius font-weight-bold">Поиск</button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </section>
+      <!-- End Main Slider With Form -->
+      <!-- Properties List -->
+      <section class="section-padding">
+         <div class="section-title text-center mb-5">
+            <h2>Последние объявления</h2>
+            <div class="line mb-2"></div>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+         </div>
+         <div class="container">
+            <div class="row">
+             {% for classified in classifieds %}
+               <div class="col-lg-4 col-md-4">
+                  <div class="card card-list">
+                     <a href="{{ classified.get_absolute_url }}">
+                        <div class="card-img">
+                           <div class="badge images-badge"><i class="mdi mdi-image-filter"></i> {{ classified.classified_images.count }}</div>
+                           <span class="badge badge-primary">Продажа</span>
+                           <img class="card-img-top" src="{{ classified.classified_images.first.get_src }}" alt="{{ classified.nmb_rooms }}, {{ classified.flat_square }} м2, {{ classified.flat_price }} руб.">
+                        </div>
+                        <div class="card-body">
+                           <h2 class="text-primary mb-2 mt-0">
+                               {{ classified.flat_price }}<small>руб.</small>
+                           </h2>
+                           <h5 class="card-title mb-2">{{ classified.nmb_rooms }}, {{ classified.flat_square }} м2, {{ classified.flat_price }} руб.</h5>
+                           <h6 class="card-subtitle mt-1 mb-0 text-muted"><i class="mdi mdi-home-map-marker"></i> {{ classified.flat_description|truncatechars_html:35 }}</h6>
+                        </div>
+                        <div class="card-footer">
+                           <span><i class="mdi mdi-scale-bathroom"></i> Этаж : <strong>{{ classified.flat_floor }} из {{ classified.total_floor }}</strong></span>
+                           <span><i class="mdi mdi-move-resize-variant"></i> Площадь : <strong>{{ classified.flat_square }} м2.</strong></span>
+                        </div>
+                     </a>
+                  </div>
+               </div>
+            {% endfor %}
+            </div>
+            <div class="row mt-4">
+               <div class="col-md-12 text-center">
+                  <button class="btn btn-secondary font-weight-bold btn-lg" type="submit">VIEW ALL</button>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- End Properties List -->
+      <!-- Properties by City -->
+      <section class="section-padding bg-grey">
+         <div class="section-title text-center mb-5">
+            <h2>Property By City</h2>
+            <div class="line mb-2"></div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+         </div>
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-4 col-md-4">
+                  <div class="card bg-dark text-white card-overlay">
+                     <a href="index.html#">
+                        <img class="card-img" src="{% static 'img/overlay/1.png' %}" alt="Card image">
+                        <div class="card-img-overlay">
+                           <h3 class="card-title text-white">California</h3>
+                           <p class="card-text text-white">16 Properties</p>
+                        </div>
+                     </a>
+                  </div>
+               </div>
+               <div class="col-lg-4 col-md-4">
+                  <div class="card bg-dark text-white card-overlay">
+                     <a href="index.html#">
+                        <img class="card-img" src="{% static 'img/overlay/2.png' %}" alt="Card image">
+                        <div class="card-img-overlay">
+                           <h3 class="card-title text-white">New York</h3>
+                           <p class="card-text text-white">16 Properties</p>
+                        </div>
+                     </a>
+                  </div>
+               </div>
+               <div class="col-lg-4 col-md-4">
+                  <div class="card bg-dark text-white card-overlay">
+                     <a href="index.html#">
+                        <img class="card-img" src="{% static 'img/overlay/3.png' %}" alt="Card image">
+                        <div class="card-img-overlay">
+                           <h3 class="card-title text-white">Los Angeles</h3>
+                           <p class="card-text text-white">265 Properties</p>
+                        </div>
+                     </a>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-lg-6 col-md-6">
+                  <div class="card bg-dark text-white card-overlay">
+                     <a href="index.html#">
+                        <img class="card-img" src="{% static 'img/overlay/4.png' %}" alt="Card image">
+                        <div class="card-img-overlay">
+                           <h3 class="card-title text-white">Chicago</h3>
+                           <p class="card-text text-white">620 Properties</p>
+                        </div>
+                     </a>
+                     .
+                  </div>
+               </div>
+               <div class="col-lg-6 col-md-6">
+                  <div class="card bg-dark text-white card-overlay">
+                     <a href="index.html#">
+                        <img class="card-img" src="{% static 'img/overlay/5.png' %}" alt="Card image">
+                        <div class="card-img-overlay">
+                           <h3 class="card-title text-white">Philadelphia</h3>
+                           <p class="card-text text-white">28 Properties</p>
+                        </div>
+                     </a>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- End Properties by City -->
+      <!-- Trusted Agents -->
+      <section class="section-padding">
+         <div class="section-title text-center mb-5">
+            <h2>Trusted Agents</h2>
+           <div class="line mb-2"></div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+         </div>
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-4 col-md-4">
+                  <div class="agents-card text-center">
+                     <img class="img-fluid mb-4" src="{% static 'img/user/1.jpg' %}" alt="">
+                     <p class="mb-4">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been.</p>
+                     <h6 class="mb-0 text-primary">- Stave Martin
+                        <span class="star-rating">
+                        <i class="mdi mdi-star text-warning"></i>
+                        <i class="mdi mdi-star text-warning"></i>
+                        <i class="mdi mdi-star text-warning"></i>
+                        <i class="mdi mdi-star text-warning"></i>
+                        <i class="mdi mdi-star-half text-warning"></i>
+                        </span>
+                     </h6>
+                     <small>Buying Agent</small>
+                  </div>
+               </div>
+               <div class="col-lg-4 col-md-4">
+                  <div class="agents-card text-center">
+                     <img class="img-fluid mb-4" src="{% static 'img/user/2.jpg' %}" alt="">
+                     <p class="mb-4">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been.</p>
+                     <h6 class="mb-0 text-primary">- Mark Smith
+                        <span class="star-rating">
+                        <i class="mdi mdi-star text-warning"></i>
+                        <i class="mdi mdi-star text-warning"></i>
+                        <i class="mdi mdi-star text-warning"></i>
+                        <i class="mdi mdi-star text-warning"></i>
+                        <i class="mdi mdi-star-half text-warning"></i>
+                        </span>
+                     </h6>
+                     <small>Selling Agent</small>
+                  </div>
+               </div>
+               <div class="col-lg-4 col-md-4">
+                  <div class="agents-card text-center">
+                     <img class="img-fluid mb-4" src="{% static 'img/user/3.jpg' %}" alt="">
+                     <p class="mb-4">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been.</p>
+                     <h6 class="mb-0 text-primary">- Ryan Printz
+                        <span class="star-rating">
+                        <i class="mdi mdi-star text-warning"></i>
+                        <i class="mdi mdi-star text-warning"></i>
+                        <i class="mdi mdi-star text-warning"></i>
+                        <i class="mdi mdi-star text-warning"></i>
+                        <i class="mdi mdi-star-half text-warning"></i>
+                        </span>
+                     </h6>
+                     <small>Real Estate Broker</small>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- End Trusted Agents -->
+      <!-- Blog -->
+      <section class="section-padding border-top">
+         <div class="section-title text-center mb-5">
+            <h2>Blogs For You</h2>
+            <div class="line mb-2"></div>
+            <p>Lorem ipsum dolor sit amet.</p>
+         </div>
+         <div class="container">
+            <div class="row">
+                {% for post in posts %}
+                   <div class="col-lg-4 col-md-4">
+                      <div class="card blog-card">
+                         <a href="{{ post.get_absolute_url }}">
+                            <img class="card-img-top" src="{% if post.get_preview_image %}{{ post.get_preview_image }}{% else %}{% static 'img/blog/1.png' %}{% endif %}" alt="Card image cap">
+                            <div class="card-body">
+                               <span class="badge badge-success">House/Villa</span>
+                               <h6>{{ post.post_title }}</h6>
+                               <p class="mb-0">{{ post.post_body|safe|striptags|truncatechars_html:150}}</p>
+                            </div>
+                            <div class="card-footer">
+                               <p class="mb-0"><strong>{{ post.author }}</strong> {{ post.pub_date }}</p>
+                            </div>
+                         </a>
+                      </div>
+                   </div>
+                {% endfor %}
+
+            </div>
+         </div>
+      </section>
+      <!-- End Blog -->
+{% endblock %}

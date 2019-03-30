@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+   <!-- Register -->
+      <section class="section-padding">
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-5 col-md-5 mx-auto">
+                  <div class="card padding-card no-radius border t-align-l">
+                     <div class="card-body">
+                        <h5 class="card-title mb-4">Авторизация</h5>
+                        {% if wrong_data %}
+                            <div clas="wrong-way">
+                                <p>Внимание! Вы ввели некоректные данные. Попробуйте авторизоваться снова, либо воспользуйтесь одним из следующих пунктов:</p>
+                                <ul>
+                                    <li><a href="{% url 'password_reset' %}">Восстановление пароля</a></li>
+                                    <li><a href="#">Регистрация</a></li>
+                                </ul>
+                            </div>
+                        {% endif %}
+                         <form action="{% url 'login_url' %}" method="POST" id="post-add-form">
+                            {% csrf_token %}
+
+                            {% for field in form %}
+                                 <div class="form-group">
+                                    {{ field.label_tag }}
+                                    {{ field.error_messages }}
+                                    {{ field }}
+                                </div>
+                            {% endfor %}
+                            <input type="submit" class="btn btn-primary btn-lg btn-block" value="Войти">
+                         </form>
+                        <p><a href="{% url 'password_reset' %}">Забыли пароль?</a></p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- End Register -->
+
+{% endblock %}

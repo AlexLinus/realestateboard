@@ -1,0 +1,58 @@
+.photo-upload {
+  opacity: 0;
+  min-height: 120px;
+  cursor: pointer;
+}
+
+.photo-upload-block {
+  background-image: url(../img/addphoto.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  min-height: 120px;
+  border: 1px solid #cccccc;
+}
+
+.images-edit-wrapper {
+  height: 120px;
+  width: auto;
+  display: block;
+  position: relative;;
+  outline: 1px solid #ced4da;
+}
+
+.images-edit-wrapper img {
+  z-index: 5;
+  display: block;
+  height: 120px;
+  margin: 0 auto;
+}
+
+.delete_icon {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  display: block;
+  width: 30px;
+  height: 30px;
+  background: url(../img/delete_icon.png);
+  z-index: 10;
+  padding: 0px;
+  box-shadow: none;
+  border: none;
+}
+
+.delete_icon:hover {
+  cursor: pointer;
+}
+
+.margin-top-search {
+  padding-top: 200px;
+}
+
+.admin-number {
+  font-size: 28px;
+  font-weight: 600;
+  color: #003366;
+  margin-bottom: 15px;
+}

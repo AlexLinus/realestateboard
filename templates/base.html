@@ -1,0 +1,288 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="Giftechies">
+      <meta name="author" content="Giftechies">
+      <title>Samar Real Estate - Bootstrap 4 Light  Theme</title>
+      <!-- Favicon Icon -->
+      <link rel="icon" type="image/png" href="http://giftechies.com/samar-real-estate/theme/img/favicon.png">
+      <!-- Bootstrap core CSS -->
+      <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+      <!-- Material Design Icons -->
+      <link href="{% static 'vendor/icons/css/materialdesignicons.min.css' %}" media="all" rel="stylesheet" type="text/css" />
+      <!-- Select2 CSS -->
+      <link href="{% static 'vendor/select2/css/select2-bootstrap.css' %}" rel="stylesheet" />
+      <link href="{% static 'vendor/select2/css/select2.min.css' %}" rel="stylesheet" />
+      <!-- Custom styles for this template -->
+      <link href="{% static 'css/samar.css' %}" rel="stylesheet">
+       <link href="{% static 'css/style.css' %}" rel="stylesheet">
+       <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+   </head>
+   <body>
+      
+      <!-- Navbar -->
+      <header>
+      	<div class="container position-relative">
+        	 <nav class="navbar navbar-expand-lg navbar-light bg-danger pr-3 pl-3">
+               <a class="navbar-brand text-success logo" href="{% url 'home_url' %}">
+               <img src="{% static 'img/logo.png' %}" alt="samar logo">
+               </a>
+               <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
+               </button>
+               <div class="collapse navbar-collapse" id="navbarResponsive">
+                  <ul class="navbar-nav mr-auto mt-2 mt-lg-0 margin-auto">
+                     <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="index.html#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        HOME
+                        </a>
+                        <div class="dropdown-menu">
+                           <a class="dropdown-item" href="index.html">Home With Search</a>
+                           <a class="dropdown-item" href="http://giftechies.com/samar-real-estate/theme/index1.html">Home With Map</a>
+                           <a class="dropdown-item" href="http://giftechies.com/samar-real-estate/theme/index2.html">Home With Property Info</a>
+                        </div>
+                     </li>
+                     <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="index.html#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Properties
+                        </a>
+                        <div class="dropdown-menu">
+                           <a class="dropdown-item" href="http://giftechies.com/samar-real-estate/theme/properties-grid.html">Properties Grid</a>
+                           <a class="dropdown-item" href="http://giftechies.com/samar-real-estate/theme/properties-list.html">Properties List</a>
+                           <a class="dropdown-item" href="http://giftechies.com/samar-real-estate/theme/property-single-slider.html">Property Single Slider</a>
+                           <a class="dropdown-item" href="http://giftechies.com/samar-real-estate/theme/property-single-gallery.html">Property Single Gallery</a>
+                        </div>
+                     </li>
+                     <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="index.html#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Agency
+                        </a>
+                        <div class="dropdown-menu">
+                           <a class="dropdown-item" href="http://giftechies.com/samar-real-estate/theme/agency-list.html">Agency List</a>
+                           <a class="dropdown-item" href="http://giftechies.com/samar-real-estate/theme/agency-profile.html">Agency Profile</a>
+                           <a class="dropdown-item" href="http://giftechies.com/samar-real-estate/theme/agents.html">Agents</a>
+                           <a class="dropdown-item" href="http://giftechies.com/samar-real-estate/theme/agent-profile.html">Agent Profile</a>
+                        </div>
+                     </li>
+                     <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="index.html#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Blog
+                        </a>
+                        <div class="dropdown-menu">
+                           <a class="dropdown-item" href="{% url 'blog_url' %}">Blog</a>
+                           <a class="dropdown-item" href="http://giftechies.com/samar-real-estate/theme/blog-single.html">Blog Single</a>
+                        </div>
+                     </li>
+                     <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="index.html#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        My Account
+                        </a>
+                        <div class="dropdown-menu">
+                           <a class="dropdown-item" href="http://giftechies.com/samar-real-estate/theme/user-profile.html">User Profile</a>
+                           <a class="dropdown-item" href="http://giftechies.com/samar-real-estate/theme/social-profiles.html">Social Profiles</a>
+                           <a class="dropdown-item" href="{% url 'user_classifieds_url' %}">Мои объявления</a>
+                           <a class="dropdown-item" href="http://giftechies.com/samar-real-estate/theme/favorite-properties.html">Favorite Properties</a>
+                           <a class="dropdown-item" href="{% url 'add_classified_url' %}">Добавить объявления</a>
+                        </div>
+                     </li>
+                     <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="index.html#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Pages
+                        </a>
+                        <div class="dropdown-menu">
+                           <a class="dropdown-item" href="http://giftechies.com/samar-real-estate/theme/about.html">About Us</a>
+                           <a class="dropdown-item" href="http://giftechies.com/samar-real-estate/theme/faq.html">FAQ</a>
+                           <a class="dropdown-item" href="http://giftechies.com/samar-real-estate/theme/contact.html">Contact</a>
+                           <a class="dropdown-item" href="http://giftechies.com/samar-real-estate/theme/not-found.html">404 Page</a>
+                        </div>
+                     </li>
+                  </ul>
+                  <div class="my-2 my-lg-0">
+                     <ul class="list-inline main-nav-right">
+                        <li class="list-inline-item">
+                            {% if user.is_authenticated %}
+                                <a class="btn btn-link text-white btn-sm" href="{% url 'logout_url' %}"><i class="mdi mdi-lock-outline"></i> Выйти</a>
+                            {% else %}
+                                <a class="btn btn btn-outline-primary btn-sm" href="{% url 'login_url' %}"><i class="mdi mdi-account-outline"></i> Войти</a>
+                            {% endif %}
+                        </li>
+                        <li class="list-inline-item">
+                            {% if user.is_authenticated %}
+                                <a class="btn btn-secondary btn-sm" href="{% url 'add_classified_url' %}"><i class="mdi mdi-home-account"></i> Добавить объявление</a>
+                            {% else %}
+                                <a class="btn btn-primary btn-sm" href="{% url 'register_url' %}"><i class="mdi mdi-security-account"></i> Регистрация</a>
+                            {% endif %}
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+         	</nav>
+         </div>
+      </header>
+      <!-- End Navbar -->
+{% block content %}
+{% endblock %}
+      <!-- Footer -->
+      <section class="section-padding footer">
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-3 col-md-3">
+                  <h4 class="mb-5 mt-0"><a class="logo" href="index.html"><img src="{% static 'img/logo.png' %}" alt="samar logo"></a></h4>
+                  <p>86 Petersham town, New South wales<br>Waedll Steet, Australia PA 6550</p>
+                  <p class="mb-0"><a class="text-warning" href="index.html#"><i class="mdi mdi-phone"></i> +61 525 240 310</a></p>
+                  <p class="mb-0"><a class="text-success" href="index.html#"><i class="mdi mdi-email"></i> yoursite@gmail.com</a></p>
+                  <p class="mb-0"><a class="text-primary" href="index.html#"><i class="mdi mdi-earth"></i> www.yoursite.com</a></p>
+               </div>
+               <div class="col-lg-2 col-md-2">
+                  <h6 class="mb-4">OUR PROPERTIES</h6>
+                  <ul>
+                  <li><a href="index.html#"><i class="mdi mdi-arrow-right"></i> Single Story</a></li>
+                  <li><a href="index.html#"><i class="mdi mdi-arrow-right"></i> Dubble Story</a></li>
+                  <li><a href="index.html#"><i class="mdi mdi-arrow-right"></i> Tripple Story</a></li>
+                  <li><a href="index.html#"><i class="mdi mdi-arrow-right"></i> Resort</a></li>
+                  <li><a href="index.html#"><i class="mdi mdi-arrow-right"></i> Home in Merrick Way</a></li>
+                  </ul>
+               </div>
+               <div class="col-lg-2 col-md-2">
+                  <h6 class="mb-4">QUICK LINKS</h6>
+                  <ul>
+                  <li><a href="index.html#"><i class="mdi mdi-arrow-right"></i> Home in Coral Gables</a></li>
+                  <li><a href="index.html#"><i class="mdi mdi-arrow-right"></i> Villa on Grand Avenue</a></li>
+                  <li><a href="index.html#"><i class="mdi mdi-arrow-right"></i> Home in Merrick Way</a></li>
+                  <li><a href="index.html#"><i class="mdi mdi-arrow-right"></i> Land / Plots</a></li>
+                  <li><a href="index.html#"><i class="mdi mdi-arrow-right"></i> Restaurent</a></li>
+                  </ul>
+               </div>
+               <div class="col-lg-2 col-md-2">
+                  <h6 class="mb-4">ABOUT</h6>
+                  <ul>
+                  <li><a href="index.html#"><i class="mdi mdi-arrow-right"></i> Company Information</a></li>
+                  <li><a href="index.html#"><i class="mdi mdi-arrow-right"></i> Careers</a></li>
+                  <li><a href="index.html#"><i class="mdi mdi-arrow-right"></i> Store Location</a></li>
+                  <li><a href="index.html#"><i class="mdi mdi-arrow-right"></i> Affillate Program</a></li>
+                  <li><a href="index.html#"><i class="mdi mdi-arrow-right"></i> Copyright</a></li>
+                  </ul>
+               </div>
+               <div class="col-lg-3 col-md-3">
+                  <h6 class="mb-4">NEWSLETTER</h6>
+                  <div class="input-group">
+                     <input type="text" class="form-control" placeholder="Email Address">
+                     <div class="input-group-append">
+                        <button class="btn btn-secondary" type="button"><i class="mdi mdi-arrow-right"></i></button>
+                     </div>
+                  </div>
+                  <p class="text-info newsletter-info"><i class="mdi mdi-email-variant"></i> Get the most recent updates from our site and be updated your self...</p>
+                  <h6 class="mb-3 mt-4">GET IN TOUCH</h6>
+                  <div class="footer-social">
+                     <a class="btn-facebook" href="index.html#"><i class="mdi mdi-facebook"></i></a>
+                     <a class="btn-twitter" href="index.html#"><i class="mdi mdi-twitter"></i></a>
+                     <a class="btn-instagram" href="index.html#"><i class="mdi mdi-instagram"></i></a>
+                     <a class="btn-whatsapp" href="index.html#"><i class="mdi mdi-whatsapp"></i></a>
+                     <a class="btn-messenger" href="index.html#"><i class="mdi mdi-facebook-messenger"></i></a>
+                     <a class="btn-google" href="index.html#"><i class="mdi mdi-google"></i></a>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- End Footer -->
+      <!-- Copyright -->
+      <div class="pt-4 pb-4 text-center footer-bottom">
+         <p class="mt-0 mb-0">&copy; Copyright 2019 <strong>Samar Real Estate</strong>. All Rights Reserved</p>
+         <small class="mt-0 mb-0">
+         Made with <i class="mdi mdi-heart text-danger"></i> by <a target="_blank" href="https://giftechies.com/" class="text-warning">Giftechies</a>
+         </small>
+      </div>
+      <!-- End Copyright -->
+      <!-- Bootstrap core JavaScript -->
+
+      <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+      <!-- Contact form JavaScript -->
+      <!-- Do not edit these files! In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
+      <script src="{% static 'js/jqBootstrapValidation.js' %}"></script>
+      <script src="{% static 'js/contact_me.js' %}"></script>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+      <!-- select2 Js -->
+      <script src="{% static 'vendor/select2/js/select2.min.js' %}"></script>
+      <!-- Custom -->
+      <script src="{% static 'js/custom.js' %}"></script>
+       <script src="http://malsup.github.com/jquery.form.js"></script>
+
+        <script>
+            // Здесь представлена реализация для добавления нового объявления, фото не загружаются в базу сразу, а храняться в браузере, и только после отправки формы отправляются.
+            let my_count_id = 0;
+            //Т.к Джанго изначально выводит hidden инпуты с мета информацией, и количеством форм. Будем менять количество форм в этой мета инфорации, при добавлении новых фото. Только так джанго считает наши добавленные лишними инпуты и сохранит изображения в базу.
+            let my_count_forms = 1;
+            $('#image-add-items').on('change', '.photo-upload', function (event) {
+                    let my_return = handleFiles(this.files);
+                    //$(this).css('background-image', `url($(str_my_return))`);
+                    let add_photo_block = $(this).closest(".form-group");
+                    add_photo_block.attr('style', 'background-image: url('+ my_return +');' );
+                    $('#id_form-TOTAL_FORMS').attr('value', my_count_forms);
+            });
+              function handleFiles(files) {
+                    console.log(files);
+                    for (let i = 0; i < files.length; i++) {
+                         console.log(files[i]);
+                          let url_image = window.URL.createObjectURL(files[i]);
+                          //img.onload = function() {
+                          //  window.URL.revokeObjectURL(this.src);
+                          //}
+                          ++my_count_id;
+                          ++my_count_forms;
+                          let add_image_block = `<div class="col-sm-3 image-block image-block-add"><div class="form-group photo-upload-block"><input type="file" name="form-${my_count_id}-image" class="form-control photo-upload" id="id_form-${my_count_id}-image"><input type="hidden" name="form-${my_count_id}-id" id="id_form-${my_count_id}-id"></div></div>`;
+                          //let add_image_block = '<div class="col-sm-3 image-block image-block-add"><div class="form-group photo-upload-block"><input type="file" name="image" accept="image/*" class="form-control photo-upload" id="id_image"></div></div>'
+                          $('.image-block:first').before(add_image_block);
+                          return url_image;
+                    }
+                }
+        </script>
+<script>
+
+$(document).ready(function () {
+	let image_id_list = [];
+	$('.delete_icon').on('click', function () {
+		let image_data_id = $(this).attr('data-image-id');
+		image_id_list.push(image_data_id);
+		let add_photo_block = $(this).closest(".image-block-edit");
+		add_photo_block.empty();
+		add_photo_block.remove();
+		data = {
+			'image_id_list': image_id_list,
+            csrfmiddlewaretoken:'{{csrf_token}}',
+		};
+	});
+
+	$('#btn-classified-edit').on('click', function (e) {
+	    e.preventDefault();
+	    console.log('Сработал submit and preventdefault');
+        console.log(image_id_list);
+
+		data = {
+			'image_id_list': image_id_list,
+            csrfmiddlewaretoken:'{{csrf_token}}',
+		};
+		console.log(data);
+		console.log('Сработала Дата');
+		$.ajax({
+            traditional: true,
+			type: "POST",
+			url: "/classified/2-1-komn-44-4/edit/",
+			data: data,
+			success: function (data) {
+                    console.log('Сработало!')
+				}
+			});
+		//$("form button:submit").submit();
+		console.log('Сработал submit Клик');
+		$(this).closest("form").submit();
+		});
+	});
+</script>
+{% block scripts_footer %}
+   {% endblock %}
+   </body>
+</html>

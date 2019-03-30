@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block content %}
+          <section class="section-padding bg-dark inner-header">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12 text-center">
+                  <h1 class="mt-0 mb-3">Подать жалобу</h1>
+                  <div class="breadcrumbs">
+                     <p class="mb-0"><a href="{% url 'home_url' %}"><i class="mdi mdi-home-outline"></i> Главная</a> /  Подтверждение удаления объявления</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- Add Property -->
+      <section class="section-padding">
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-6 col-md-6">
+                   <script>
+                       // JS код на валидацию капчи перед отправкой формы. Если введенное значение не соответствует, то выходит ошибка.
+                       $(document).ready(function () {
+                            let answer = {{ answer }};
+                            console.log(answer);
+                            console.log(typeof toString(answer));
+                            $('#send-complaint-btn').on('click', function (e) {
+                                e.preventDefault();
+                                let user_answer = $('#id_captcha_answer').val();
+
+                                if (user_answer == answer) {
+                                    $(this).closest("form").submit();
+                                }else{
+                                    $('#answer_error').html('Извините, но вы ввели не правильный ответ. Попробуйте снова!')
+                                }
+                            })
+                       })
+                   </script>
+                   <h2>Это ваше объявление или оно уже не актуально?</h2>
+                  <form action="{% url 'complaint_classified_url' classified.slug %}" method="POST" enctype="multipart/form-data">
+                      {% csrf_token %}
+                      <label for="{{ form.complaint_body.id_for_label }}">Опишите подробно вашу жалобу:</label>
+                      <div class="form-group">
+                            {{ form.message.errors }}
+
+                            {{ form.complaint_body }}
+                      </div>
+                      <div id="answer_error"></div>
+                      <div class="form-group">
+                          {{ form.message.errors }}
+                            <label for="{{ form.captcha_answer.id_for_label }}">Введите ответ на вопрос (это проверка, что вы не робот):</label>
+                            <p>Вопрос: {{ rand_choice }}</p>
+                            {{ form.captcha_answer }}
+                      </div>
+
+                         <div class="form-group">
+                             <input type="submit" id="send-complaint-btn" value="Отправить">
+                        </div>
+                  </form>
+               </div>
+                <div class="col-lg-6 col-md-6">
+                        <div class="card card-list card-list-view">
+                           <a href="{{ classified.get_absolute_url }}">
+                              <div class="row no-gutters">
+                                 <div class="col-lg-5 col-md-5">
+                                    <span class="badge badge-success">For Sale</span>
+                                     <img class="card-img-top" src="{{ classified.classified_images.first.get_src }}" alt="{{ classified.nmb_rooms }}, {{ classified.flat_square }} м2, {{ classified.flat_price }} руб.">
+                                    <h5 class="card-title">{{ classified.nmb_rooms }}, {{ classified.flat_square }} м2, {{ classified.flat_price }} руб.</h5>
+                                 </div>
+                                 <div class="col-lg-7 col-md-7">
+                                    <div class="card-body">
+                                       <h6 class="card-subtitle mb-2 text-muted"><i class="mdi mdi-home-map-marker"></i> {{ classified.nmb_rooms }}, {{ classified.flat_square }} м2, {{ classified.flat_price }} руб.</h6>
+                                    </div>
+                                    <div class="card-footer">
+                                       <p>{{ classified.flat_description|truncatechars_html:100 }}</p>
+                                       <span><i class="mdi mdi-sofa"></i> Комн : <strong>{{ classified.nmb_rooms }}</strong></span>
+                                       <span><i class="mdi mdi-scale-bathroom"></i> Baths : <strong>2</strong></span>
+                                       <span><i class="mdi mdi-move-resize-variant"></i> Площадь : <strong>{{ classified.flat_square }} м2.</strong></span>
+                                    </div>
+                                    <h4 class="text-primary mb-0 mt-2">
+                                          {{ classified.flat_price }} <small>руб.</small>
+                                    </h4>
+                                 </div>
+                              </div>
+                           </a>
+                        </div>
+                </div>
+            </div>
+         </div>
+      </section>
+      <!-- End Add Property -->
+
+{% endblock %}

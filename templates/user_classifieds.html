@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block content %}
+      <section class="section-padding bg-dark inner-header">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12 text-center">
+                  <h1 class="mt-0 mb-3">Мои объявления</h1>
+                  <div class="breadcrumbs">
+                     <p class="mb-0"><a href="{% url 'home_url' %}"><i class="mdi mdi-home-outline"></i> Главная</a> /  Мои объявлления</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- My Properties -->
+      <section class="section-padding">
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-4 col-md-4 user-side-bar">
+                  <div class="list-group">
+                     <a class="list-group-item list-group-item-action" href="http://giftechies.com/samar-real-estate/theme/user-profile.html"><span class="mdi mdi-account"></span> User Profile</a>
+                     <a class="list-group-item list-group-item-action" href="http://giftechies.com/samar-real-estate/theme/social-profiles.html"><span class="mdi mdi-share-variant"></span> Social Profiles</a>
+                     <a class="list-group-item list-group-item-action active" href="{% url 'user_classifieds_url' %}"><span class="mdi mdi-home-account"></span> Мои объявления</a>
+                     <a class="list-group-item list-group-item-action" href="http://giftechies.com/samar-real-estate/theme/favorite-properties.html"><span class="mdi mdi-heart"></span> Favorite Properties</a>
+                     <a class="list-group-item list-group-item-action" href="{% url 'add_classified_url' %}"><span class="mdi mdi-account-location"></span> Добавить объявление</a>
+                  </div>
+               </div>
+               <div class="col-lg-8 col-md-9">
+                  <div class="row">
+                      {% for classified in classifieds %}
+                     <div class="col-lg-12 col-md-12 property-list-view">
+                        <div class="card card-list card-list-view">
+
+                              <div class="row no-gutters">
+                                 <div class="col-lg-5 col-md-5">
+                                     <a href="{{ classified.get_absolute_url }}">
+                                    <span class="badge badge-success">For Sale</span>
+                                     <img class="card-img-top" src="{{ classified.classified_images.first.get_src }}" alt="{{ classified.nmb_rooms }}, {{ classified.flat_square }} м2, {{ classified.flat_price }} руб.">
+                                    <h5 class="card-title">{{ classified.nmb_rooms }}, {{ classified.flat_square }} м2, {{ classified.flat_price }} руб.</h5>
+                                     </a>
+                                 </div>
+                                 <div class="col-lg-7 col-md-7">
+                                    <div class="card-body">
+                                        <a href="{{ classified.get_absolute_url }}"><h6 class="card-subtitle mb-2 text-muted"><i class="mdi mdi-home-map-marker"></i> {{ classified.nmb_rooms }}, {{ classified.flat_square }} м2, {{ classified.flat_price }} руб.</h6></a>
+                                        <p><a href="{% url 'edit_classified_url' classified.slug %}">Редактировать</a> | <a href="{% url 'delete_classified_url' classified.slug %}">Удалить</a></p>
+                                    </div>
+                                    <div class="card-footer">
+                                       <p>{{ classified.flat_description|truncatechars_html:100 }}</p>
+                                       <span><i class="mdi mdi-sofa"></i> Комн : <strong>{{ classified.nmb_rooms }}</strong></span>
+                                       <span><i class="mdi mdi-scale-bathroom"></i> Baths : <strong>2</strong></span>
+                                       <span><i class="mdi mdi-move-resize-variant"></i> Площадь : <strong>{{ classified.flat_square }} м2.</strong></span>
+                                    </div>
+                                    <h4 class="text-primary mb-0 mt-2">
+                                          {{ classified.flat_price }} <small>руб.</small>
+                                    </h4>
+                                 </div>
+                              </div>
+
+                        </div>
+                     </div>
+                      {% endfor %}
+                  </div>
+                  <nav class="mt-5">
+                     <ul class="pagination justify-content-center">
+                        <li class="page-item disabled">
+                           <a class="page-link" href="my-properties.html#" tabindex="-1"><i class="mdi mdi-chevron-left"></i></a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="my-properties.html#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="my-properties.html#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="my-properties.html#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="my-properties.html#">...</a></li>
+                        <li class="page-item"><a class="page-link" href="my-properties.html#">10</a></li>
+                        <li class="page-item">
+                           <a class="page-link" href="my-properties.html#"><i class="mdi mdi-chevron-right"></i></a>
+                        </li>
+                     </ul>
+                  </nav>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- End My Properties -->
+{% endblock %}

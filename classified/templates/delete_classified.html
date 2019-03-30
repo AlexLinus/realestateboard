@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+          <section class="section-padding bg-dark inner-header">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12 text-center">
+                  <h1 class="mt-0 mb-3">Удаление объявления</h1>
+                  <div class="breadcrumbs">
+                     <p class="mb-0"><a href="{% url 'home_url' %}"><i class="mdi mdi-home-outline"></i> Главная</a> /  Подтверждение удаления объявления</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- Add Property -->
+      <section class="section-padding">
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-4 col-md-4">
+                   <h2>Вы уверены, что хотите удалить это объявление?</h2>
+                  <form action="{% url 'delete_classified_url' classified.slug %}" method="POST" enctype="multipart/form-data">
+                      {% csrf_token %}
+                         <div class="form-group">
+                             <button class="btn-danger bnt">Удалить</button>
+                        </div>
+                  </form>
+               </div>
+                <div class="col-lg-8 col-md-8">
+                        <div class="card card-list card-list-view">
+                           <a href="{{ classified.get_absolute_url }}">
+                              <div class="row no-gutters">
+                                 <div class="col-lg-5 col-md-5">
+                                    <span class="badge badge-success">For Sale</span>
+                                     <img class="card-img-top" src="{{ classified.classified_images.first.get_src }}" alt="{{ classified.nmb_rooms }}, {{ classified.flat_square }} м2, {{ classified.flat_price }} руб.">
+                                    <h5 class="card-title">{{ classified.nmb_rooms }}, {{ classified.flat_square }} м2, {{ classified.flat_price }} руб.</h5>
+                                 </div>
+                                 <div class="col-lg-7 col-md-7">
+                                    <div class="card-body">
+                                       <h6 class="card-subtitle mb-2 text-muted"><i class="mdi mdi-home-map-marker"></i> {{ classified.nmb_rooms }}, {{ classified.flat_square }} м2, {{ classified.flat_price }} руб.</h6>
+                                    </div>
+                                    <div class="card-footer">
+                                       <p>{{ classified.flat_description|truncatechars_html:100 }}</p>
+                                       <span><i class="mdi mdi-sofa"></i> Комн : <strong>{{ classified.nmb_rooms }}</strong></span>
+                                       <span><i class="mdi mdi-scale-bathroom"></i> Baths : <strong>2</strong></span>
+                                       <span><i class="mdi mdi-move-resize-variant"></i> Площадь : <strong>{{ classified.flat_square }} м2.</strong></span>
+                                    </div>
+                                    <h4 class="text-primary mb-0 mt-2">
+                                          {{ classified.flat_price }} <small>руб.</small>
+                                    </h4>
+                                 </div>
+                              </div>
+                           </a>
+                        </div>
+                </div>
+            </div>
+         </div>
+      </section>
+      <!-- End Add Property -->
+
+{% endblock %}

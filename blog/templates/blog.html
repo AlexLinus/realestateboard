@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+          <!-- Blog List -->
+      <section class="section-padding">
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-12 col-md-12">
+                  <div class="row">
+                   {% for post in posts %}
+                     <div class="col-lg-4 col-md-4">
+                        <div class="card blog-card">
+                           <a href="{{ post.get_absolute_url }}">
+                              <img class="card-img-top" src="{% if post.get_preview_image %}{{ post.get_preview_image }}{% else %}{% static 'img/blog/1.png' %}{% endif %}" alt="Card image cap">
+                              <div class="card-body">
+                                 <span class="badge badge-success">House/Villa</span>
+                                 <h6>{{ post.post_title }}</h6>
+                                 <p class="mb-0">{{ post.post_body|truncatechars:100|safe }}</p>
+                              </div>
+                              <div class="card-footer">
+                                 <p class="mb-0"> <strong>{{ post.author.username }}</strong> {{ post.pub_date }}</p>
+                              </div>
+                           </a>
+                        </div>
+                     </div>
+                   {% endfor %}
+                  </div>
+
+                  <nav class="mt-5">
+                     <ul class="pagination justify-content-center">
+
+                        <li class="page-item {% if not posts.has_previous %}disabled{% endif%}">
+                           <a class="page-link" href="{% if posts.has_previous %}?page={{ posts.previous_page_number }}{% endif %}" tabindex="-1"><i class="mdi mdi-chevron-left"></i></a>
+                        </li>
+                       {% for p in page_range %}
+                            {% if p == posts.number %}
+                                <li class="page-item active"><a class="page-link" href="?page={{ p }}">{{ p }}</a></li>
+                            {% else %}
+                                <li class="page-item"><a class="page-link" href="?page={{ p }}">{{ p }}</a></li>
+                            {% endif %}
+                       {% endfor %}
+                        <li class="page-item {% if not posts.has_next %}disabled{% endif%}">
+                           <a class="page-link" href="{% if posts.has_next %}?page={{ posts.next_page_number }}{% endif %}"><i class="mdi mdi-chevron-right"></i></a>
+                        </li>
+                     </ul>
+                  </nav>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- End Blog List -->
+{% endblock %}
