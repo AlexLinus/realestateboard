@@ -10,6 +10,8 @@ class Pages(models.Model):
     creation_date = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания страницы')
     pub_date = models.DateTimeField(auto_now=True, verbose_name='Дата публикации')
     is_active = models.BooleanField(default=False, verbose_name='Опубликовано', help_text='Поставьте галочку, если хотите опубликовать страницу')
+    top_menu = models.BooleanField(default=False, verbose_name='Меню в шапке', help_text='Поставьте галочку, если хотите чтобы ссылка на страницу отображалась в верхнем меню сайта.')
+    footer_menu = models.BooleanField(default=False, verbose_name='Меню в футере', help_text='Поставьте галочку, если хотите чтобы ссылка на страницу отображалась в нижнем меню сайта.')
     meta_title = models.CharField(max_length=140, blank=True, null=True, verbose_name='SEO заголовок')
     meta_description = models.TextField(max_length=220, blank=True, null=True, verbose_name='SEO описание')
 

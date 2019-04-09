@@ -12,7 +12,8 @@ class ClassifiedView(View):
     def get(self, request, flat_slug):
         classified = Classified.objects.get(is_active=True, slug__iexact=flat_slug)
         image_iteration_list = [i for i in range(1, classified.classified_images.count())]
-
+        related_classifieds = Classified.objects.filter(is_active=True, nmb_rooms__iexact=classified.nmb_rooms).order_by("?")[:2] #order_by нужно, чтобы выбирать рандомно объекты. А не 3 последних.
+        feautered_classifieds = Classified.objects.filter(is_active=True, nmb_rooms__iexact=classified.nmb_rooms).order_by("-flat_price")[:3]
         #Присваиваем в сессию переменную, для дальнейшего повышения просмотров
         try:
             views_slug = request.session['views_id_{}'.format(classified.id)]
@@ -21,7 +22,7 @@ class ClassifiedView(View):
             classified.views += 1
             classified.save()
 
-        return render(request, 'classified_detail.html', context={'classified': classified, 'image_iteration_list': image_iteration_list})
+        return render(request, 'classified_detail.html', context={'classified': classified, 'image_iteration_list': image_iteration_list, 'related_classifieds': related_classifieds, 'feautered_classifieds': feautered_classifieds})
 
 class AddClassidiedView(View):
 

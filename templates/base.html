@@ -25,7 +25,8 @@
       
       <!-- Navbar -->
       <header>
-      	<div class="container position-relative">
+      <div class="container-fluid">
+      	<div class="container">
         	 <nav class="navbar navbar-expand-lg navbar-light bg-danger pr-3 pl-3">
                <a class="navbar-brand text-success logo" href="{% url 'home_url' %}">
                <img src="{% static 'img/logo.png' %}" alt="samar logo">
@@ -35,70 +36,37 @@
                </button>
                <div class="collapse navbar-collapse" id="navbarResponsive">
                   <ul class="navbar-nav mr-auto mt-2 mt-lg-0 margin-auto">
-                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="index.html#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        HOME
+                     <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home_url' %}">
+                        Главная
                         </a>
-                        <div class="dropdown-menu">
-                           <a class="dropdown-item" href="index.html">Home With Search</a>
-                           <a class="dropdown-item" href="http://giftechies.com/samar-real-estate/theme/index1.html">Home With Map</a>
-                           <a class="dropdown-item" href="http://giftechies.com/samar-real-estate/theme/index2.html">Home With Property Info</a>
-                        </div>
                      </li>
                      <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="index.html#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Properties
+                        <a class="nav-link" href="{% url 'blog_url' %}">
+                        Блог
                         </a>
-                        <div class="dropdown-menu">
-                           <a class="dropdown-item" href="http://giftechies.com/samar-real-estate/theme/properties-grid.html">Properties Grid</a>
-                           <a class="dropdown-item" href="http://giftechies.com/samar-real-estate/theme/properties-list.html">Properties List</a>
-                           <a class="dropdown-item" href="http://giftechies.com/samar-real-estate/theme/property-single-slider.html">Property Single Slider</a>
-                           <a class="dropdown-item" href="http://giftechies.com/samar-real-estate/theme/property-single-gallery.html">Property Single Gallery</a>
-                        </div>
                      </li>
-                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="index.html#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Agency
-                        </a>
-                        <div class="dropdown-menu">
-                           <a class="dropdown-item" href="http://giftechies.com/samar-real-estate/theme/agency-list.html">Agency List</a>
-                           <a class="dropdown-item" href="http://giftechies.com/samar-real-estate/theme/agency-profile.html">Agency Profile</a>
-                           <a class="dropdown-item" href="http://giftechies.com/samar-real-estate/theme/agents.html">Agents</a>
-                           <a class="dropdown-item" href="http://giftechies.com/samar-real-estate/theme/agent-profile.html">Agent Profile</a>
-                        </div>
-                     </li>
-                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="index.html#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Blog
-                        </a>
-                        <div class="dropdown-menu">
-                           <a class="dropdown-item" href="{% url 'blog_url' %}">Blog</a>
-                           <a class="dropdown-item" href="http://giftechies.com/samar-real-estate/theme/blog-single.html">Blog Single</a>
-                        </div>
-                     </li>
-                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="index.html#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        My Account
-                        </a>
-                        <div class="dropdown-menu">
-                           <a class="dropdown-item" href="http://giftechies.com/samar-real-estate/theme/user-profile.html">User Profile</a>
-                           <a class="dropdown-item" href="http://giftechies.com/samar-real-estate/theme/social-profiles.html">Social Profiles</a>
-                           <a class="dropdown-item" href="{% url 'user_classifieds_url' %}">Мои объявления</a>
-                           <a class="dropdown-item" href="http://giftechies.com/samar-real-estate/theme/favorite-properties.html">Favorite Properties</a>
-                           <a class="dropdown-item" href="{% url 'add_classified_url' %}">Добавить объявления</a>
-                        </div>
-                     </li>
-                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="index.html#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Pages
-                        </a>
-                        <div class="dropdown-menu">
-                           <a class="dropdown-item" href="http://giftechies.com/samar-real-estate/theme/about.html">About Us</a>
-                           <a class="dropdown-item" href="http://giftechies.com/samar-real-estate/theme/faq.html">FAQ</a>
-                           <a class="dropdown-item" href="http://giftechies.com/samar-real-estate/theme/contact.html">Contact</a>
-                           <a class="dropdown-item" href="http://giftechies.com/samar-real-estate/theme/not-found.html">404 Page</a>
-                        </div>
-                     </li>
+                      {% if request.user.is_authenticated %}
+                         <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="index.html#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Мой аккаунт
+                            </a>
+                            <div class="dropdown-menu">
+                               <a class="dropdown-item" href="#">Профиль</a>
+                               <a class="dropdown-item" href="{% url 'user_classifieds_url' %}">Мои объявления</a>
+                               <a class="dropdown-item" href="{% url 'add_classified_url' %}">Добавить объявления</a>
+                            </div>
+                         </li>
+                      {% endif %}
+                      {% if top_menu %}
+                          {% for page in top_menu %}
+                             <li class="nav-item">
+                                <a class="nav-link" href="{{ page.get_absolute_url }}">
+                                {{ page.page_title }}
+                                </a>
+                             </li>
+                          {% endfor %}
+                      {% endif %}
                   </ul>
                   <div class="my-2 my-lg-0">
                      <ul class="list-inline main-nav-right">
@@ -121,6 +89,7 @@
                </div>
          	</nav>
          </div>
+      </div>
       </header>
       <!-- End Navbar -->
 {% block content %}
@@ -131,19 +100,21 @@
             <div class="row">
                <div class="col-lg-3 col-md-3">
                   <h4 class="mb-5 mt-0"><a class="logo" href="index.html"><img src="{% static 'img/logo.png' %}" alt="samar logo"></a></h4>
-                  <p>86 Petersham town, New South wales<br>Waedll Steet, Australia PA 6550</p>
+                  <p>Лучшие квартиры в Ярославле до 2 млн. рублей. 1-комн, 2-комн, Студии.</p>
                   <p class="mb-0"><a class="text-warning" href="index.html#"><i class="mdi mdi-phone"></i> +61 525 240 310</a></p>
                   <p class="mb-0"><a class="text-success" href="index.html#"><i class="mdi mdi-email"></i> yoursite@gmail.com</a></p>
                   <p class="mb-0"><a class="text-primary" href="index.html#"><i class="mdi mdi-earth"></i> www.yoursite.com</a></p>
                </div>
                <div class="col-lg-2 col-md-2">
-                  <h6 class="mb-4">OUR PROPERTIES</h6>
+                  <h6 class="mb-4">Меню</h6>
                   <ul>
-                  <li><a href="index.html#"><i class="mdi mdi-arrow-right"></i> Single Story</a></li>
-                  <li><a href="index.html#"><i class="mdi mdi-arrow-right"></i> Dubble Story</a></li>
-                  <li><a href="index.html#"><i class="mdi mdi-arrow-right"></i> Tripple Story</a></li>
-                  <li><a href="index.html#"><i class="mdi mdi-arrow-right"></i> Resort</a></li>
-                  <li><a href="index.html#"><i class="mdi mdi-arrow-right"></i> Home in Merrick Way</a></li>
+                  <li><a href="{% url 'home_url' %}"><i class="mdi mdi-arrow-right"></i> Блог</a></li>
+                      {% if footer_menu %}
+                          {% for page in footer_menu %}
+                              <li><a href="{{ page.get_absolute_url }}"><i class="mdi mdi-arrow-right"></i> {{ page.page_title }}</a></li>
+                          {% endfor %}
+                      {% endif %}
+                        <li><a href="{% url 'blog_url' %}"><i class="mdi mdi-arrow-right"></i> Блог</a></li>
                   </ul>
                </div>
                <div class="col-lg-2 col-md-2">
